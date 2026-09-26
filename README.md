@@ -1,82 +1,67 @@
 <div align="center">
 
-  <h1>⚙️ Stx</h1>
-  <p><strong>Engineering work by <a href="https://github.com/Stxyu-p">@Stxyu-p</a></strong></p>
-  <p>Local-first systems, agent infrastructure, and browser tooling</p>
+  <img src="assets/banner.svg" alt="Stx Engineering Portfolio" width="100%" />
+
+  <br><br>
+
+  <p>Software Engineer building <strong>local-first architectures, Go & Python services, and zero-telemetry client tools.</strong></p>
 
   <p>
-    <img src="https://img.shields.io/badge/Projects-5-0284c7?style=flat-square&logo=github&logoColor=white" alt="Projects" />
-    <img src="https://img.shields.io/badge/Telemetry-None-10b981?style=flat-square" alt="Zero Telemetry" />
+    <a href="https://go.dev"><img src="https://img.shields.io/badge/Go-1.22%2B-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go" /></a>
+    <a href="https://www.python.org"><img src="https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python" /></a>
+    <a href="https://www.sqlite.org"><img src="https://img.shields.io/badge/SQLite-WAL-003B57?style=flat-square&logo=sqlite&logoColor=white" alt="SQLite" /></a>
+    <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-ES2022-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" /></a>
+    <img src="https://img.shields.io/badge/Privacy-Zero--Telemetry-10b981?style=flat-square" alt="Zero Telemetry" />
     <img src="https://img.shields.io/badge/Storage-Local--First-7B61FF?style=flat-square" alt="Local First" />
-    <img src="https://img.shields.io/badge/commits-555-8b949e?style=flat-square" alt="Commits" />
-    <img src="https://img.shields.io/badge/code-59.1k-8b949e?style=flat-square" alt="Lines of code" />
-    <img src="https://img.shields.io/badge/tests-81-6e7681?style=flat-square" alt="Test files" />
   </p>
 
 </div>
 
 ---
 
-## System Map
+### 🚀 Selected Projects
 
-<p align="center">
-  <img src="assets/system-map.svg" alt="MemCore and NovelClaw feed a Hermes agent fleet that drives three browser userscripts" width="880" />
-</p>
+#### 🐾 [NovelClaw](https://github.com/Stxyu-p/NovelClaw)
+> **High-Performance Web Novel Reader & Streaming Translation Engine**
+
+- **Architecture:** Single-binary service written in **Go** with an embedded zero-dependency web interface.
+- **Streaming Pipeline:** Real-time translation and event dispatch powered by Server-Sent Events (SSE).
+- **Context Governance:** Persistent glossary extraction, local cache persistence, and deterministic job scheduling.
+- **Distribution:** Open Source (MIT) · [`github.com/Stxyu-p/NovelClaw`](https://github.com/Stxyu-p/NovelClaw)
 
 ---
 
-## Featured Projects
+#### 🧠 [MemCore](https://github.com/Stxyu-p/memcore)
+> **Governed Memory Engine for Autonomous AI Agents**
 
-| Project | Domain | Architecture & Core Highlights | Distribution |
+- **Persistence Layer:** Embedded relational store built on **Python** and **SQLite WAL (Write-Ahead Logging)** with full-text search via **FTS5**.
+- **Data Invariants:** Journal-first transaction admission, immutable version history DAGs, and tombstone deletion guards.
+- **Design Goal:** Eliminates AI agent hallucinations and memory corruption by enforcing schema-level constraints rather than heuristic conventions.
+- **Distribution:** Open Source (MIT) · [`github.com/Stxyu-p/memcore`](https://github.com/Stxyu-p/memcore)
+
+---
+
+### 🌐 Client-Side & Browser Engineering
+
+A suite of standalone, zero-telemetry client extensions built for high-throughput DOM virtualization and client-side stream processing:
+
+| Project | Platform / Target | Technical Highlights | Distribution |
 | :--- | :--- | :--- | :--- |
-| **🧠 [MemCore](https://github.com/Stxyu-p/memcore)** | Multi-Agent Memory | Governed memory engine: SQLite + WAL + FTS5, immutable version history, tombstone guards, journal-first admission with semantic review. | [![Python](https://img.shields.io/badge/Python-MIT-3776AB?style=flat-square&logo=python&logoColor=white)](https://github.com/Stxyu-p/memcore) |
-| **🐾 [NovelClaw](https://github.com/Stxyu-p/NovelClaw)** | Web Novels / AI Reader | Single-binary Go application, embedded zero-dependency web reader, 9Router/LLM translation pipeline, persistent glossary and context memory, SSE job streaming. | [![Go](https://img.shields.io/badge/Go-1.22%2B-MIT-00ADD8?style=flat-square&logo=go&logoColor=white)](https://github.com/Stxyu-p/NovelClaw) |
-| **⚡ [Telefilter Desktop](https://github.com/Stxyu-p/telefilter-desktop)** | Telegram WebK | Ultra-compact 34px inline toolbar, client-side ZIP32 multi-album packing, deep virtualized DOM harvester, privacy vault. | [![Greasy Fork](https://img.shields.io/badge/Greasy%20Fork-v5.1.0-red?style=flat-square&logo=greasyfork&logoColor=white)](https://greasyfork.org/scripts/596222-telefilter-desktop-edition-v5) |
-| **⚡ [IG MaxPland](https://github.com/Stxyu-p/ig-maxpland)** | Instagram Web | Clean Architecture with 18 decoupled modules, stealth seen-telemetry interceptor across `fetch`, XHR and `sendBeacon`, zero-bounce clean feed, dormant radar with randomized jitter. | [![Greasy Fork](https://img.shields.io/badge/Greasy%20Fork-v3.0.0-red?style=flat-square&logo=greasyfork&logoColor=white)](https://greasyfork.org/scripts/595787-ig-maxpland) |
-| **⚡ [ThreadMax](https://github.com/Stxyu-p/threadmax)** | Threads Web | One-click carousel and bulk media extraction, in-memory ZIP32 compiler, video booster with PiP, tracking-sanitized links, thread unroller reader. | [![Greasy Fork](https://img.shields.io/badge/Greasy%20Fork-v1.4.0-red?style=flat-square&logo=greasyfork&logoColor=white)](https://github.com/Stxyu-p/threadmax) |
-
-### Telefilter Desktop
-
-<img src="assets/telefilter-desktop.png" alt="Telegram WebK with the Telefilter inline toolbar and floating bulk action bar" width="860" />
-
-### IG MaxPland
-
-<img src="assets/ig-maxpland-studio.png" alt="MaxPland relationship scanner with live scan progress, stat cards and filter pills" width="860" />
-
-### ThreadMax
-
-<img src="assets/threadmax-feed.png" alt="Threads feed with ThreadMax download button open on a carousel post" width="620" />
+| **[Telefilter Desktop](https://github.com/Stxyu-p/telefilter-desktop)** | Telegram WebK | In-memory ZIP32 media compilation without disk writes, virtualized DOM harvester, and private client vault. | [![Greasy Fork](https://img.shields.io/badge/Greasy%20Fork-v5.1.0-red?style=flat-square&logo=greasyfork&logoColor=white)](https://greasyfork.org/scripts/596222-telefilter-desktop-edition-v5) |
+| **[IG MaxPland](https://github.com/Stxyu-p/ig-maxpland)** | Instagram Web | Decoupled 18-module architecture, stealth telemetry interceptor across `fetch`, XHR, and `sendBeacon`, and zero-bounce clean feed. | [![Greasy Fork](https://img.shields.io/badge/Greasy%20Fork-v3.0.0-red?style=flat-square&logo=greasyfork&logoColor=white)](https://greasyfork.org/scripts/595787-ig-maxpland) |
+| **[ThreadMax](https://github.com/Stxyu-p/threadmax)** | Threads Web | Carousel and bulk media extraction, link tracking sanitization, and floating picture-in-picture video engine. | [![Source](https://img.shields.io/badge/Userscript-v1.4.0-blue?style=flat-square&logo=javascript&logoColor=white)](https://raw.githubusercontent.com/Stxyu-p/threadmax/main/threadmax.user.js) |
 
 ---
 
-## Install
+### 🛡️ Engineering Philosophy
 
-| Project | Install |
-| :--- | :--- |
-| **Telefilter Desktop** | [Greasy Fork v5.1.0](https://greasyfork.org/scripts/596222-telefilter-desktop-edition-v5) |
-| **IG MaxPland** | [Greasy Fork v3.0.0](https://greasyfork.org/scripts/595787-ig-maxpland) |
-| **ThreadMax** | [Userscript RAW v1.4.0](https://raw.githubusercontent.com/Stxyu-p/threadmax/main/threadmax.user.js) |
-| **MemCore** | Go 1.22+ / Python, MIT |
-| **NovelClaw** | Go 1.22+, MIT |
-
----
-
-## Engineering Principles
-
-**Local-first and zero-telemetry.**
-Data stays on the machine. No hidden network calls.
-
-**Dependencies as a budget.**
-Stdlib and native platform features before any third-party package.
-
-**Governance over hope.**
-Invariants enforced in code and schema, not conventions.
-
-**Prove it by running it.**
-Every claim backed by a test suite or a real execution log.
+* **Local-First by Default:** Computation and persistence remain on user-owned hardware. No uninvited cloud sync or third-party storage.
+* **Zero-Telemetry Standard:** Software must never phone home. Zero analytics scripts, tracking beacons, or invisible fingerprinting.
+* **Minimal Dependency Surface:** Prioritize the standard library and native platform APIs. Every third-party dependency is an audit liability.
+* **Empirical Verification:** Invariants are strictly verified through deterministic execution and automated test suites.
 
 ---
 
 <div align="center">
-<sub>Curated showcase. Updated as projects ship.</sub>
+  <sub>Engineering showcase by <a href="https://github.com/Stxyu-p">@Stxyu-p</a> · Independent Open Source Projects</sub>
 </div>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220" width="100%" height="220" role="img" aria-labelledby="bannerTitle bannerDesc">
+  <title id="bannerTitle">Stx (@Stxyu-p) Engineering Portfolio</title>
+  <desc id="bannerDesc">Systems, local-first architectures, Go and Python services, and zero-telemetry client tooling.</desc>
+
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0d12"/>
+      <stop offset="50%" stop-color="#0e131b"/>
+      <stop offset="100%" stop-color="#141a24"/>
+    </linearGradient>
+
+    <!-- Accent Line Gradient -->
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+
+    <!-- Subtle Dot Pattern -->
+    <pattern id="dotGrid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#1e293b" opacity="0.8"/>
+    </pattern>
+  </defs>
+
+  <!-- Base Canvas -->
+  <rect width="900" height="220" fill="url(#bgGrad)" rx="10"/>
+  <rect width="900" height="220" fill="url(#dotGrid)" rx="10"/>
+  <rect width="900" height="220" fill="none" stroke="#222b38" stroke-width="1.5" rx="10"/>
+
+  <!-- Top Accent Bar -->
+  <rect x="0" y="0" width="900" height="3" fill="url(#accentGrad)" rx="1"/>
+
+  <!-- Terminal / Tag Indicator -->
+  <g transform="translate(48, 38)">
+    <rect width="180" height="24" rx="4" fill="#161e2e" stroke="#263447" stroke-width="1"/>
+    <circle cx="12" cy="12" r="4" fill="#38bdf8"/>
+    <text x="24" y="16" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="600" letter-spacing="1">SYSTEMS &amp; CLIENTS</text>
+  </g>
+
+  <!-- Main Headline -->
+  <text x="48" y="105" fill="#f8fafc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="-0.5">
+    Stx <tspan fill="#64748b" font-weight="400" font-size="24">/ @Stxyu-p</tspan>
+  </text>
+
+  <!-- Subheadline -->
+  <text x="48" y="138" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14.5" font-weight="400">
+    Local-first backend architectures, streaming engines, and zero-telemetry web tooling.
+  </text>
+
+  <!-- Technical Spec Tags -->
+  <g transform="translate(48, 168)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="500">
+    <!-- Tag 1: Go -->
+    <rect x="0" y="0" width="70" height="22" rx="4" fill="#131d2b" stroke="#1e3a5f" stroke-width="1"/>
+    <text x="35" y="15" fill="#38bdf8" text-anchor="middle">GO 1.22+</text>
+
+    <!-- Tag 2: Python -->
+    <rect x="78" y="0" width="68" height="22" rx="4" fill="#1a1c2e" stroke="#312e81" stroke-width="1"/>
+    <text x="112" y="15" fill="#a5b4fc" text-anchor="middle">PYTHON</text>
+
+    <!-- Tag 3: SQLite WAL -->
+    <rect x="154" y="0" width="88" height="22" rx="4" fill="#1b1c20" stroke="#334155" stroke-width="1"/>
+    <text x="198" y="15" fill="#cbd5e1" text-anchor="middle">SQLITE WAL</text>
+
+    <!-- Tag 4: Local-First -->
+    <rect x="250" y="0" width="98" height="22" rx="4" fill="#0f241d" stroke="#065f46" stroke-width="1"/>
+    <text x="299" y="15" fill="#34d399" text-anchor="middle">LOCAL-FIRST</text>
+
+    <!-- Tag 5: Zero-Telemetry -->
+    <rect x="356" y="0" width="124" height="22" rx="4" fill="#181c24" stroke="#334155" stroke-width="1"/>
+    <text x="418" y="15" fill="#94a3b8" text-anchor="middle">ZERO-TELEMETRY</text>
+  </g>
+
+  <!-- Right Decorative Geometry / Status Badge -->
+  <g transform="translate(740, 48)">
+    <rect width="112" height="124" rx="8" fill="#111620" stroke="#1e2633" stroke-width="1"/>
+    
+    <circle cx="24" cy="28" r="4" fill="#10b981"/>
+    <text x="36" y="32" fill="#e2e8f0" font-family="ui-monospace, monospace" font-size="11" font-weight="600">ONLINE</text>
+    
+    <line x1="16" y1="48" x2="96" y2="48" stroke="#1e2633" stroke-width="1"/>
+
+    <text x="16" y="70" fill="#64748b" font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.5">LOCATION</text>
+    <text x="16" y="86" fill="#cbd5e1" font-family="ui-monospace, monospace" font-size="11" font-weight="600">CLIENT-SIDE</text>
+
+    <text x="16" y="104" fill="#64748b" font-family="ui-monospace, monospace" font-size="9" letter-spacing="0.5">TELEMETRY</text>
+    <text x="16" y="118" fill="#34d399" font-family="ui-monospace, monospace" font-size="10" font-weight="600">NONE (0%)</text>
+  </g>
+</svg>
