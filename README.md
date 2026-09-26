@@ -35,6 +35,18 @@
 | **⚡ [IG MaxPland](https://github.com/Stxyu-p/ig-maxpland)** | Instagram Web | Clean Architecture with 18 decoupled modules, stealth seen-telemetry interceptor across `fetch`, XHR and `sendBeacon`, zero-bounce clean feed, dormant radar with randomized jitter. | [![Greasy Fork](https://img.shields.io/badge/Greasy%20Fork-v3.0.0-red?style=flat-square&logo=greasyfork&logoColor=white)](https://greasyfork.org/scripts/595787-ig-maxpland) |
 | **⚡ [ThreadMax](https://github.com/Stxyu-p/threadmax)** | Threads Web | One-click carousel and bulk media extraction, in-memory ZIP32 compiler, video booster with PiP, tracking-sanitized links, thread unroller reader. | [![Greasy Fork](https://img.shields.io/badge/Greasy%20Fork-v1.4.0-red?style=flat-square&logo=greasyfork&logoColor=white)](https://github.com/Stxyu-p/threadmax) |
 
+### Telefilter Desktop
+
+<img src="assets/telefilter-desktop.png" alt="Telegram WebK with the Telefilter inline toolbar and floating bulk action bar" width="860" />
+
+### IG MaxPland
+
+<img src="assets/ig-maxpland-studio.png" alt="MaxPland relationship scanner with live scan progress, stat cards and filter pills" width="860" />
+
+### ThreadMax
+
+<img src="assets/threadmax-feed.png" alt="Threads feed with ThreadMax download button open on a carousel post" width="620" />
+
 ---
 
 ## Install

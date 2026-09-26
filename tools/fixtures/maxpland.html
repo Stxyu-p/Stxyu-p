@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>IG MaxPland - Relationship Scanner</title>
+<style>
+  /* Tokens lifted verbatim from ig-maxpland/src/app_en.js --mp-* custom properties. */
+  :root {
+    --mp-bg-root:#0b0d10; --mp-bg-surface:#12151b; --mp-bg-panel:#171b23; --mp-bg-card:#1e232d;
+    --mp-bg-elevated:#252b37; --mp-bg-hover:#2b3240;
+    --mp-border-subtle:rgba(255,255,255,.08); --mp-border-card:#2e3544; --mp-border-active:rgba(255,255,255,.25);
+    --mp-text-primary:#f8fafc; --mp-text-secondary:#94a3b8; --mp-text-muted:#64748b;
+    --mp-blue:#0284c7; --mp-blue-hover:#0369a1;
+    --mp-emerald:#10b981; --mp-emerald-bg:rgba(16,185,129,.14);
+    --mp-amber:#f59e0b; --mp-amber-bg:rgba(245,158,11,.14);
+    --mp-rose:#f43f5e;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--mp-bg-root); color:var(--mp-text-primary);
+         font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+
+  .stage { display:flex; justify-content:center; padding:28px 20px; }
+
+  /* Studio modal, as built by app_en.js */
+  .mp-overlay { position:fixed; inset:0; background:rgba(0,0,0,.72); }
+  .mp-modal { position:relative; width:1000px; max-width:100%; height:600px; display:flex; flex-direction:column;
+              background:var(--mp-bg-panel); border:1px solid var(--mp-border-card);
+              border-radius:14px; overflow:hidden; box-shadow:0 24px 70px rgba(0,0,0,.6); }
+
+  .mp-header { display:flex; align-items:center; justify-content:space-between;
+               padding:14px 18px; border-bottom:1px solid var(--mp-border-subtle); background:var(--mp-bg-surface); }
+  .mp-brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:16px; }
+  .mp-logo { width:26px; height:26px; border-radius:7px; background:linear-gradient(135deg,var(--mp-blue),#7c3aed);
+             display:flex; align-items:center; justify-content:center; font-size:13px; }
+  .mp-user-pill { font-size:11px; font-weight:600; color:var(--mp-emerald); background:var(--mp-emerald-bg);
+                  border:1px solid rgba(16,185,129,.3); padding:3px 9px; border-radius:999px; }
+  .mp-close { width:30px; height:30px; border-radius:8px; border:1px solid var(--mp-border-subtle);
+              background:var(--mp-bg-card); color:var(--mp-text-secondary); display:flex; align-items:center; justify-content:center; }
+
+  .mp-tabs { display:flex; gap:4px; padding:10px 14px; border-bottom:1px solid var(--mp-border-subtle); background:var(--mp-bg-surface); }
+  .mp-tab { padding:7px 14px; border-radius:8px; font-size:13px; font-weight:600; color:var(--mp-text-secondary);
+            border:1px solid transparent; }
+  .mp-tab.active { background:var(--mp-bg-elevated); color:var(--mp-text-primary); border-color:var(--mp-border-active); }
+
+  .mp-progress-container { padding:14px 18px; border-bottom:1px solid var(--mp-border-subtle); background:var(--mp-bg-panel); }
+  .mp-scan-row { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .mp-scan-phase { font-size:13px; font-weight:600; }
+  .mp-scan-meta { display:flex; align-items:center; gap:14px; font-size:12px; color:var(--mp-text-secondary); }
+  .mp-btn-danger { font-size:12px; font-weight:600; color:#fff; background:var(--mp-rose);
+                   border:none; padding:6px 12px; border-radius:8px; }
+  .mp-progress-track { height:6px; border-radius:999px; background:var(--mp-bg-card); margin-top:10px; overflow:hidden; }
+  .mp-progress-fill { height:100%; width:47%; background:linear-gradient(90deg,var(--mp-blue),#38bdf8); }
+
+  .mp-body { flex:1; display:grid; grid-template-columns:200px 1fr; overflow:hidden; }
+
+  .mp-stats { padding:16px; border-right:1px solid var(--mp-border-subtle); background:var(--mp-bg-surface); }
+  .mp-stat-card { background:var(--mp-bg-card); border:1px solid var(--mp-border-card); border-radius:10px; padding:12px; margin-bottom:10px; }
+  .mp-stat-label { display:block; font-size:11px; color:var(--mp-text-muted); margin-bottom:5px; }
+  .mp-stat-value { display:block; font-size:22px; font-weight:700; }
+
+  .mp-pills { display:flex; flex-wrap:wrap; gap:7px; padding:14px 18px; border-bottom:1px solid var(--mp-border-subtle); }
+  .mp-pill-btn { display:flex; align-items:center; gap:7px; padding:6px 11px; border-radius:999px; font-size:12px; font-weight:600;
+                 background:var(--mp-bg-card); border:1px solid var(--mp-border-card); color:var(--mp-text-secondary); }
+  .mp-pill-btn.active { background:var(--mp-blue); border-color:var(--mp-blue); color:#fff; }
+  .mp-pill-count { background:rgba(255,255,255,.14); padding:1px 7px; border-radius:999px; font-size:11px; }
+
+  .mp-list { overflow:hidden; }
+  .mp-user-row { display:flex; align-items:center; gap:12px; padding:11px 18px; border-bottom:1px solid var(--mp-border-subtle); }
+  .mp-user-check input { width:15px; height:15px; accent-color:var(--mp-blue); background:var(--mp-bg-card);
+                       border:1px solid var(--mp-border-active); border-radius:4px; appearance:none; }
+  .mp-user-check input:checked { background:var(--mp-blue); border-color:var(--mp-blue);
+                                box-shadow:inset 0 0 0 3px var(--mp-bg-card); }
+  .mp-user-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+                    font-weight:700; font-size:13px; flex-shrink:0; }
+  .mp-user-info { flex:1; min-width:0; }
+  .mp-user-name-line { display:flex; align-items:center; gap:7px; }
+  .mp-username { color:var(--mp-blue); font-size:13px; font-weight:600; text-decoration:none; }
+  .mp-verified-badge { font-size:11px; color:var(--mp-blue); }
+  .mp-status-tag { margin-left:auto; font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px; }
+  .tag-mutual { color:var(--mp-emerald); background:var(--mp-emerald-bg); }
+  .tag-orphan { color:var(--mp-amber); background:var(--mp-amber-bg); }
+  .mp-fullname { font-size:12px; color:var(--mp-text-secondary); }
+  .mp-user-actions { display:flex; gap:6px; }
+  .mp-icon-btn { width:29px; height:29px; border-radius:8px; border:1px solid var(--mp-border-subtle);
+                 background:var(--mp-bg-card); color:var(--mp-text-secondary);
+                 display:flex; align-items:center; justify-content:center; font-size:13px; }
+</style>
+</head>
+<body>
+<div class="mp-overlay"></div>
+<div class="stage">
+  <div class="mp-modal">
+
+    <div class="mp-header">
+      <div class="mp-brand">
+        <span class="mp-logo">M</span>
+        <span>MaxPland</span>
+        <span class="mp-user-pill">Account: demo_workspace</span>
+      </div>
+      <div class="mp-close">&#10005;</div>
+    </div>
+
+    <div class="mp-tabs">
+      <div class="mp-tab active">Relationships</div>
+      <div class="mp-tab">Account Health</div>
+      <div class="mp-tab">Features</div>
+      <div class="mp-tab">Settings</div>
+      <div class="mp-tab">Media Vault</div>
+    </div>
+
+    <div class="mp-progress-container">
+      <div class="mp-scan-row">
+        <span class="mp-scan-phase">[2/2] Scanning followers graph...</span>
+        <div class="mp-scan-meta">
+          <span>Users: 1,284</span>
+          <span>Pages: 37</span>
+          <span>00:41</span>
+          <button class="mp-btn-danger">Stop</button>
+        </div>
+      </div>
+      <div class="mp-progress-track"><div class="mp-progress-fill"></div></div>
+    </div>
+
+    <div class="mp-body">
+      <div class="mp-stats">
+        <div class="mp-stat-card">
+          <span class="mp-stat-label">Total scanned</span>
+          <span class="mp-stat-value">1,284</span>
+        </div>
+        <div class="mp-stat-card">
+          <span class="mp-stat-label">Not following back</span>
+          <span class="mp-stat-value" style="color:var(--mp-rose)">312</span>
+        </div>
+        <div class="mp-stat-card">
+          <span class="mp-stat-label">Mutuals</span>
+          <span class="mp-stat-value" style="color:var(--mp-emerald)">847</span>
+        </div>
+        <div class="mp-stat-card">
+          <span class="mp-stat-label">Whitelisted</span>
+          <span class="mp-stat-value" style="color:var(--mp-amber)">18</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="mp-pills">
+          <div class="mp-pill-btn active">All <span class="mp-pill-count">1,284</span></div>
+          <div class="mp-pill-btn">Ghosts <span class="mp-pill-count">312</span></div>
+          <div class="mp-pill-btn">Mutuals <span class="mp-pill-count">847</span></div>
+          <div class="mp-pill-btn">Private <span class="mp-pill-count">107</span></div>
+          <div class="mp-pill-btn">Whitelist <span class="mp-pill-count">18</span></div>
+        </div>
+
+        <div class="mp-list">
+          <div class="mp-user-row">
+            <div class="mp-user-check"><input type="checkbox"></div>
+            <div class="mp-user-avatar" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)">AK</div>
+            <div class="mp-user-info">
+              <div class="mp-user-name-line">
+                <a class="mp-username">@aria_k.demo</a><span class="mp-verified-badge">&#10003;</span>
+                <span class="mp-status-tag tag-mutual">MUTUAL</span>
+              </div>
+              <div class="mp-fullname">Aria K.</div>
+            </div>
+            <div class="mp-user-actions">
+              <div class="mp-icon-btn">&#9733;</div><div class="mp-icon-btn">&#8595;</div>
+            </div>
+          </div>
+
+          <div class="mp-user-row">
+            <div class="mp-user-check"><input type="checkbox"></div>
+            <div class="mp-user-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">TN</div>
+            <div class="mp-user-info">
+              <div class="mp-user-name-line">
+                <a class="mp-username">@t_novak.demo</a>
+                <span class="mp-status-tag tag-orphan">GHOST</span>
+              </div>
+              <div class="mp-fullname">T. Novak</div>
+            </div>
+            <div class="mp-user-actions">
+              <div class="mp-icon-btn">&#9733;</div><div class="mp-icon-btn">&#8595;</div>
+            </div>
+          </div>
+
+          <div class="mp-user-row">
+            <div class="mp-user-check"><input type="checkbox" checked></div>
+            <div class="mp-user-avatar" style="background:linear-gradient(135deg,#10b981,#14b8a6)">MR</div>
+            <div class="mp-user-info">
+              <div class="mp-user-name-line">
+                <a class="mp-username">@mika_r.demo</a><span class="mp-verified-badge">&#10003;</span>
+                <span class="mp-status-tag tag-mutual">MUTUAL</span>
+              </div>
+              <div class="mp-fullname">Mika R.</div>
+            </div>
+            <div class="mp-user-actions">
+              <div class="mp-icon-btn">&#9733;</div><div class="mp-icon-btn">&#8595;</div>
+            </div>
+          </div>
+
+          <div class="mp-user-row">
+            <div class="mp-user-check"><input type="checkbox"></div>
+            <div class="mp-user-avatar" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)">SB</div>
+            <div class="mp-user-info">
+              <div class="mp-user-name-line">
+                <a class="mp-username">@s_bao.demo</a>
+                <span class="mp-status-tag tag-orphan">GHOST</span>
+              </div>
+              <div class="mp-fullname">S. Bao</div>
+            </div>
+            <div class="mp-user-actions">
+              <div class="mp-icon-btn">&#9733;</div><div class="mp-icon-btn">&#8595;</div>
+            </div>
+          </div>
+
+          <div class="mp-user-row">
+            <div class="mp-user-check"><input type="checkbox"></div>
+            <div class="mp-user-avatar" style="background:linear-gradient(135deg,#ec4899,#f43f5e)">DL</div>
+            <div class="mp-user-info">
+              <div class="mp-user-name-line">
+                <a class="mp-username">@dara_l.demo</a><span class="mp-verified-badge">&#10003;</span>
+                <span class="mp-status-tag tag-mutual">MUTUAL</span>
+              </div>
+              <div class="mp-fullname">Dara L.</div>
+            </div>
+            <div class="mp-user-actions">
+              <div class="mp-icon-btn">&#9733;</div><div class="mp-icon-btn">&#8595;</div>
+            </div>
+          </div>
+
+          <div class="mp-user-row">
+            <div class="mp-user-check"><input type="checkbox" checked></div>
+            <div class="mp-user-avatar" style="background:linear-gradient(135deg,#14b8a6,#06b6d4)">PT</div>
+            <div class="mp-user-info">
+              <div class="mp-user-name-line">
+                <a class="mp-username">@p.tan.demo</a>
+                <span class="mp-status-tag tag-mutual">MUTUAL</span>
+              </div>
+              <div class="mp-fullname">P. Tan</div>
+            </div>
+            <div class="mp-user-actions">
+              <div class="mp-icon-btn">&#9733;</div><div class="mp-icon-btn">&#8595;</div>
+            </div>
+          </div>
+
+          <div class="mp-user-row">
+            <div class="mp-user-check"><input type="checkbox"></div>
+            <div class="mp-user-avatar" style="background:linear-gradient(135deg,#6366f1,#4338ca)">JW</div>
+            <div class="mp-user-info">
+              <div class="mp-user-name-line">
+                <a class="mp-username">@j.wong.demo</a>
+                <span class="mp-status-tag tag-orphan">GHOST</span>
+              </div>
+              <div class="mp-fullname">J. Wong</div>
+            </div>
+            <div class="mp-user-actions">
+              <div class="mp-icon-btn">&#9733;</div><div class="mp-icon-btn">&#8595;</div>
+            </div>
+          </div>
+
+          <div class="mp-user-row">
+            <div class="mp-user-check"><input type="checkbox"></div>
+            <div class="mp-user-avatar" style="background:linear-gradient(135deg,#f97316,#ea580c)">NF</div>
+            <div class="mp-user-info">
+              <div class="mp-user-name-line">
+                <a class="mp-username">@n.far.demo</a>
+                <span class="mp-status-tag tag-orphan">GHOST</span>
+              </div>
+              <div class="mp-fullname">N. Far</div>
+            </div>
+            <div class="mp-user-actions">
+              <div class="mp-icon-btn">&#9733;</div><div class="mp-icon-btn">&#8595;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

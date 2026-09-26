@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Telegram WebK - Telefilter fixture</title>
+<style>
+  * { box-sizing: border-box; }
+  body, html { margin:0; padding:0; height:100%; overflow:hidden;
+               font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+               background:#0e1621; color:#fff; }
+  .app { display:flex; height:100vh; width:100vw; }
+  .sidebar-left { width:340px; background:#17212b; border-right:1px solid #0b1118; display:flex; flex-direction:column; flex-shrink:0; }
+  .sidebar-top { height:56px; padding:10px 14px; display:flex; align-items:center; gap:12px; }
+  .sidebar-search { flex:1; height:36px; background:#242f3d; border-radius:18px; border:none; padding:0 16px;
+                   color:#fff; font-size:14px; outline:none; }
+  .chat-list { flex:1; overflow-y:auto; }
+  .chat-item { display:flex; align-items:center; gap:12px; padding:10px 14px; cursor:pointer; }
+  .chat-item.active { background:#2b5278; }
+  .chat-avatar { width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,#6b8af6,#3b5998);
+                 display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:18px; flex-shrink:0; }
+  .chat-info-col { flex:1; min-width:0; }
+  .chat-row-top { display:flex; justify-content:space-between; margin-bottom:4px; }
+  .chat-title-text { font-size:14px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .chat-time { font-size:12px; color:#7f91a4; }
+  .chat-row-bottom { display:flex; justify-content:space-between; align-items:center; }
+  .chat-snippet { font-size:13px; color:#8e9dae; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .chat-badge { background:#3390ec; font-size:11px; font-weight:bold; padding:2px 7px; border-radius:10px; }
+  #column-center { flex:1; min-width:0; position:relative; display:flex; flex-direction:column; background:#0e1621; }
+  .chat { display:flex; flex-direction:column; height:100%; }
+  .topbar { height:56px; background:#17212b; border-bottom:1px solid #0b1118; display:flex; align-items:center;
+            justify-content:space-between; padding:0 20px; flex-shrink:0; }
+  .topbar-left { display:flex; align-items:center; gap:12px; }
+  .topbar-avatar { width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,#00c6ff,#0072ff);
+                   display:flex; align-items:center; justify-content:center; font-weight:bold; }
+  .topbar-title { font-size:15px; font-weight:600; }
+  .topbar-sub { font-size:12px; color:#7f91a4; }
+  .topbar-actions { display:flex; align-items:center; gap:16px; color:#7f91a4; font-size:18px; }
+  .bubbles { flex:1; overflow:hidden; padding:14px 40px; display:flex; flex-direction:column; gap:12px; }
+  .bubble { max-width:520px; border-radius:12px; padding:10px 14px; font-size:14px; line-height:1.45; }
+  .bubble.is-in { background:#182533; align-self:flex-start; }
+  .bubble .bubble-author { font-size:12px; font-weight:600; color:#5288c1; margin-bottom:4px; }
+  .bubble .bubble-media { border-radius:8px; overflow:hidden; margin-bottom:8px; }
+  .bubble .bubble-time { font-size:11px; color:rgba(255,255,255,0.6); float:right; margin-top:4px; margin-left:12px; }
+  .bubble .bubble-doc { display:flex; align-items:center; gap:12px; background:rgba(0,0,0,0.15); padding:8px 12px; border-radius:8px; }
+  .bubble .bubble-doc-icon { width:36px; height:36px; border-radius:50%; background:#3390ec;
+                              display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:13px; }
+  .bubble.is-selected { outline:2px solid #5288c1; background:#1f3144 !important; }
+  .reactions { display:flex; gap:6px; margin-top:6px; }
+  .reaction-pill { background:rgba(255,255,255,0.1); border-radius:12px; padding:2px 8px; font-size:12px; display:inline-flex; }
+</style>
+</head>
+<body class="page-chats animation-level-2 theme-dark">
+<div class="app">
+
+  <div class="sidebar-left">
+    <div class="sidebar-top">
+      <input type="text" class="sidebar-search" placeholder="Search Telegram..." value="Media Sorter">
+    </div>
+    <div class="chat-list">
+      <div class="chat-item active">
+        <div class="chat-avatar">M</div>
+        <div class="chat-info-col">
+          <div class="chat-row-top">
+            <span class="chat-title-text">Media Sorter</span><span class="chat-time">12:45</span>
+          </div>
+          <div class="chat-row-bottom">
+            <span class="chat-snippet">3 files bundled into one archive</span><span class="chat-badge">3</span>
+          </div>
+        </div>
+      </div>
+      <div class="chat-item">
+        <div class="chat-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">S</div>
+        <div class="chat-info-col">
+          <div class="chat-row-top">
+            <span class="chat-title-text">Saved Messages</span><span class="chat-time">11:20</span>
+          </div>
+          <div class="chat-row-bottom">
+            <span class="chat-snippet">Archive ready, 12 items</span>
+          </div>
+        </div>
+      </div>
+      <div class="chat-item">
+        <div class="chat-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">E</div>
+        <div class="chat-info-col">
+          <div class="chat-row-top">
+            <span class="chat-title-text">Engineering Notes</span><span class="chat-time">Yesterday</span>
+          </div>
+          <div class="chat-row-bottom">
+            <span class="chat-snippet">v5.1.0 release notes published</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="column-center">
+    <div class="chats-container tabs-container">
+      <div class="chat tabs-tab active">
+        <div class="topbar sidebar-header">
+          <div class="topbar-left">
+            <div class="topbar-avatar">M</div>
+            <div>
+              <div class="topbar-title">Media Sorter</div>
+              <div class="topbar-sub">Demo workspace</div>
+            </div>
+          </div>
+          <div class="topbar-actions"><span>&#128269;</span><span>&#128222;</span><span>&vellip;</span></div>
+        </div>
+
+        <div class="bubbles bubbles-viewport">
+          <div class="bubble is-in is-message" data-mid="101">
+            <div class="bubble-author">Workspace</div>
+            Bundling the selected media into a single client-side archive. No upload, no server round-trip.
+            <span class="bubble-time">12:38</span>
+          </div>
+
+          <div class="bubble is-in photo is-message is-selected" data-mid="102">
+            <div class="bubble-author">Workspace</div>
+            <div class="bubble-media">
+              <svg width="460" height="200" viewBox="0 0 460 200" role="img" aria-label="image preview">
+                <rect width="460" height="200" fill="#1e3c72"/>
+                <rect x="0" y="126" width="460" height="74" fill="#16233f"/>
+                <rect x="28" y="40" width="120" height="14" rx="7" fill="rgba(255,255,255,0.22)"/>
+                <rect x="28" y="66" width="200" height="10" rx="5" fill="rgba(255,255,255,0.14)"/>
+                <rect x="28" y="86" width="170" height="10" rx="5" fill="rgba(255,255,255,0.14)"/>
+                <rect x="28" y="146" width="90" height="24" rx="12" fill="#3390ec"/>
+                <rect x="128" y="146" width="110" height="24" rx="12" fill="rgba(255,255,255,0.18)"/>
+                <text x="230" y="186" font-family="sans-serif" font-size="12" fill="rgba(255,255,255,0.75)" text-anchor="middle">UI_Dark_Concept_Final.png</text>
+              </svg>
+            </div>
+            </div>
+            Dark mode tokens with high-contrast active states.
+            <span class="bubble-time">12:40</span>
+          </div>
+
+          <div class="bubble is-in video is-message is-selected" data-mid="103">
+            <div class="bubble-author">Workspace</div>
+            <div class="bubble-media">
+              <svg width="460" height="170" viewBox="0 0 460 220" role="img" aria-label="video preview">
+                <rect width="460" height="170" fill="#0f2027"/>
+                <circle cx="230" cy="80" r="30" fill="#3390ec"/>
+                <polygon points="225,70 241,80 225,90" fill="#fff"/>
+                <text x="230" y="140" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle" font-weight="600">Walkthrough_v5.mp4</text>
+                <text x="230" y="158" font-family="sans-serif" font-size="11" fill="rgba(255,255,255,0.7)" text-anchor="middle">01:42 - 1080p 60fps - 24.8 MB</text>
+              </svg>
+            </div>
+            Zero-lag virtual scroll during the harvest.
+            <div class="reactions">
+              <span class="reaction-pill">&#128293; 42</span>
+              <span class="reaction-pill">&#128640; 19</span>
+              <span class="reaction-pill">&hearts; 12</span>
+            </div>
+            <span class="bubble-time">12:42</span>
+          </div>
+
+          <div class="bubble is-in document is-message is-selected" data-mid="104">
+            <div class="bubble-author">Workspace</div>
+            <div class="bubble-doc">
+              <div class="bubble-doc-icon">PDF</div>
+              <div>
+                <div style="font-weight:600;font-size:13px">Architecture_Spec_v5.1.pdf</div>
+                <div style="font-size:11px;color:#8e9dae">14.2 MB - Document</div>
+              </div>
+            </div>
+            Formal specifications and privacy verification notes.
+            <span class="bubble-time">12:45</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
