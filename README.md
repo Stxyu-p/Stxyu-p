@@ -8,6 +8,7 @@ I build small, local-first tools to solve friction I run into. Zero telemetry, m
 | :--- | :--- | :--- | :--- |
 | **NovelClaw** | Web novel reader with streaming AI translation | Go | [Repo ↗](https://github.com/Stxyu-p/NovelClaw) |
 | **MemCore** | Governed local memory engine for autonomous agents | Python, SQLite | [Repo ↗](https://github.com/Stxyu-p/memcore) |
+| **Skill Proof** | Local skill routing for Hermes agents: deterministic selection, tool gating, receipts | Python | [Repo ↗](https://github.com/Stxyu-p/skill-proof) |
 | **Telefilter** | Telegram WebK media extractor & in-memory ZIP pack | JavaScript | [GreasyFork ↗](https://greasyfork.org/scripts/596222-telefilter-desktop-edition-v5) |
 | **IG MaxPland** | Instagram relationship scanner & stealth feed cleaner | JavaScript | [GreasyFork ↗](https://greasyfork.org/scripts/595787-ig-maxpland) |
 | **ThreadMax** | Threads bulk media downloader & floating PiP player | JavaScript | [Script ↗](https://raw.githubusercontent.com/Stxyu-p/threadmax/main/threadmax.user.js) |
