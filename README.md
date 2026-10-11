@@ -10,8 +10,8 @@ I build small, local-first tools to solve friction I run into. Zero telemetry, m
 | **MemCore** | Governed local memory engine for autonomous agents. SQLite WAL, semantic review queue, governance tiers (candidate→accepted→golden), native Hermes provider, recovery subsystem (backup/restore/doctor). | Python, SQLite | [Repo ↗](https://github.com/Stxyu-p/memcore) |
 | **NovelClaw** | Web novel reader with streaming AI translation. Concurrent chapter fetch, real-time LLM translation overlay, local-first cache, EPUB export. | Go | [Repo ↗](https://github.com/Stxyu-p/NovelClaw) |
 | **Telefilter** | Telegram WebK media extractor & in-memory ZIP pack. Batch download, progress streaming, no disk writes until user saves. | JavaScript | [GreasyFork ↗](https://greasyfork.org/scripts/596222-telefilter-desktop-edition-v5) |
-| **IG MaxPland** | Instagram relationship scanner & stealth feed cleaner. Fast follower/following diff, silent media grab, zero footprint. | JavaScript | [GreasyFork ↗](https://greasyfork.org/scripts/595787-ig-maxpland) |
-| **ThreadMax** | Threads bulk media downloader & floating PiP player. One-click batch save, picture-in-picture video player. | JavaScript | [Script ↗](https://raw.githubusercontent.com/Stxyu-p/threadmax/main/threadmax.user.js) |
+| **IG MaxPland** | Instagram relationship scanner & stealth feed cleaner. Fast follower/following diff, silent media grab, zero footprint. | JavaScript | [Repo ↗](https://github.com/Stxyu-p/ig-maxpland) |
+| **ThreadMax** | Threads bulk media downloader & floating PiP player. One-click batch save, picture-in-picture video player. | JavaScript | [Repo ↗](https://github.com/Stxyu-p/threadmax) |
 
 ---
 
