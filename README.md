@@ -12,6 +12,7 @@ I build small, local-first tools to solve friction I run into. Zero telemetry, m
 | **NovelClaw** | Web novel reader with streaming AI translation. Concurrent chapter fetch, real-time LLM translation overlay, local-first cache, EPUB export. | Go | [Repo ↗](https://github.com/Stxyu-p/NovelClaw) |
 | **Telefilter** | Telegram WebK media extractor & in-memory ZIP pack. Batch download, progress streaming, no disk writes until user saves. | JavaScript | [Repo ↗](https://github.com/Stxyu-p/telefilter-desktop) |
 | **ThreadMax** | Threads bulk media downloader & floating PiP player. One-click batch save, picture-in-picture video player. | JavaScript | [Repo ↗](https://github.com/Stxyu-p/threadmax) |
+| **IG MaxPland** | Client-side relationship intelligence & precision HD media downloader for Instagram Web. Stealth story viewer, 1080p stream extraction, carousel slide detection, cold-start hydration, starred whitelist. | JavaScript | [Repo ↗](https://github.com/Stxyu-p/ig-maxpland) |
 
 ---
 
